@@ -9,14 +9,14 @@
    
 - name: Remove Dirctory 
   ansible.builtin.file:
-    path:  /usr/share/nginx/html
-    state: absent
+    path:   /usr/share/nginx/html
+    state:  absent
 
 - name: Create a directory 
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: directory
-    mode: '0755'
+    
 
 - name: Download web application
   ansible.builtin.get_url:
