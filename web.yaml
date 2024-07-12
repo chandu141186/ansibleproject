@@ -21,11 +21,11 @@
    - name: Download web application
      ansible.builtin.get_url:
        url: https://roboshop-builds.s3.amazonaws.com/web.zip
-       dest: /tmp/web.zip
+       dest: /tmp
 
    - name: Extract file
      ansible.builtin.unarchive:
-      src: unzip /tmp/web.zip
+      src: unzip /tmp
       dest: /usr/share/nginx/html
     
    - name: copy roboshop configuration
