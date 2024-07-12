@@ -3,9 +3,19 @@
   become: yes
   tasks:
    - name : Disable Nodejs and Enable Nodejs18
-     ansible.builtin.command: dnf module disable nodejs -y; dnf module enable nodejs:18 -y
+     ansible.builtin.shell: dnf module disable nodejs -y; dnf module enable nodejs:18 -y
+   
    - name: install nodejs
      ansible.builtin.dnf:
       name: nodejs
       state: present
+   - name: creating user roboshop
+     ansible.builtin.user:
+      name: roboshop
+      state: present
+
+   - name: Create a directory 
+     ansible.builtin.file:
+       path: /app
+       state: directory
    
