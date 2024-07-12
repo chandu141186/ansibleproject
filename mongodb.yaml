@@ -2,12 +2,28 @@
   hosts: mongodb
   become: yes
   tasks:
+   - name: copy roboshop configuration
+     ansible.builtin.copy:
+       src:  mongodb.repo
+       dest: /etc/yum.repos.d/mongo.repo
+  
    - name: install mongodb 
-     ansible.builtin.dnf:
-      name: mongodb
+     ansible.builtin.package:
+      name: mongodb-org
       state: present
   
-   - name: Enable service nginx
-     ansible.builtin.service:
-        state: restarted
+- name: Enable service nginx
+  ansible.builtin.service:
+        name: mongd
+        state: started
         enabled: yes
+- name: allow remote access  
+  ansible.builtin.repalce: 
+   path: /etc/mongod.conf
+   regxp: '127.0.0.1'
+   replace: '0.0.0.0' 
+- name: Enable service nginx
+  ansible.builtin.service:
+        name: mongd
+        state: restarted
+     
