@@ -18,11 +18,12 @@
         state: started
         enabled: yes
 
-   - name: allow remote access  
-     ansible.builtin.repalce: 
+   - name: allow remote conncections
+     ansible.builtin.replace:
        path: /etc/mongod.conf
        regexp: '127.0.0.1'
-       replace: '0.0.0.0' 
+       replace: '0.0.0.0'
+ 
 
    - name: Enable service nginx
      ansible.builtin.service:
